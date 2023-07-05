@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>SELLER - SITE</h1>
+    <center>
+    <form>
+        <p>ENTER YOUR PRODUCT NAME</p>
+        <input type="text" id="pname"> <br>
+        <p>ENTER YOUR PRODUCT PRICE</p>
+        <input type="text" id="rate"/> <br> <br>
+        <input type="submit" id="b1"/>
+    </form>
+    <br><br>
+    <a href="./home.html">Click Here For Home Page </a> <br>
+</center>
+</body>
+
+<script>
+    const add=document.querySelector("#b1");
+    
+add.addEventListener("click",async()=>{
+ const s1=String(document.querySelector("#pname").value);
+ const s2=String(document.querySelector("#rate").value);
+ fetch('http://localhost:5000/inserts',{
+            mode:'cors',
+            method:'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({
+                pname:s1,
+                rate:s2,
+            })
+        })
+        .then(async(e)=>{
+            alert("LOGIN SUCCESSFULL");
+            
+        })
+        .catch(async()=>{
+            console.log("ERROR");
+            result.innerHTML="ERROR";
+        })
+})
+</script>
+</html>

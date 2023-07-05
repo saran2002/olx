@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Buyer</title>
+
+</head>
+<style>
+    table,tr,td,th{
+        border: 2px solid black;
+    }
+</style>
+<body>
+    <center>
+    <table id="result" style="padding: 10px;">
+
+    </table></center>
+
+
+    <script>
+        // API for get requests
+        let fetchRes = fetch(
+"http://localhost:5000/get");
+        // fetchRes is the promise to resolve
+        // it by using.then() method
+        fetchRes.then(async data => {
+                var d = await data.json()
+                console.log(d)
+                var temp = ' <tr><th>Product Name</th><th>Product Price</th></tr>'
+                for(i of d)
+                {
+                    temp = temp + '<tr><td>'+i.pname+'</td><td>'+i.rate+'</td></tr>'
+                }
+                
+                document.getElementById('result').innerHTML=temp;
+            })
+    </script>
+</body>
+</html>
